@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+
+    --primary: 0 0% 4%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 35 90% 55%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 35 90% 55%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --text-primary: 0 0% 4%;
+    --text-secondary: 0 0% 35%;
+    --text-tertiary: 0 0% 55%;
+    --surface-elevated: 0 0% 100%;
+    --surface-sunken: 0 0% 96%;
+    --accent-glow: 35 90% 55%;
+    --accent-subtle: 35 60% 95%;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.03);
+    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.06);
+    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 24px 64px -16px hsl(0 0% 0% / 0.14);
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 25%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 35 90% 55%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 35 90% 55%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 35 90% 55%;
+
+    --text-primary: 0 0% 98%;
+    --text-secondary: 0 0% 70%;
+    --text-tertiary: 0 0% 50%;
+    --surface-elevated: 0 0% 8%;
+    --surface-sunken: 0 0% 5%;
+    --accent-subtle: 35 40% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    @apply bg-accent/20 text-foreground;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground;
+  }
+
+  .nav-link::after {
+    @apply absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 content-[''];
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .section-container {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-8 lg:px-12;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .heading-display {
+    @apply font-outfit text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl;
+  }
+
+  .heading-section {
+    @apply font-outfit text-2xl font-semibold tracking-tight text-foreground md:text-3xl;
+  }
+
+  .heading-card {
+    @apply font-outfit text-lg font-medium tracking-tight text-foreground md:text-xl;
+  }
+
+  .text-body {
+    @apply text-base leading-relaxed text-secondary-foreground md:text-lg;
+  }
+
+  .text-caption {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .card-elevated {
+    @apply rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:border-accent/30;
+  }
+
+  .card-subtle {
+    @apply rounded-lg bg-muted/50 p-4 transition-colors duration-200 hover:bg-muted;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background transition-all duration-200 hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-transparent px-6 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted hover:border-foreground/20 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground hover:bg-muted;
+  }
+
+  .accent-dot {
+    @apply inline-block h-2 w-2 rounded-full bg-accent;
+  }
+
+  .accent-line {
+    @apply h-px w-12 bg-accent;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .slide-in-left {
+    animation: slideInLeft 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .stagger-1 { animation-delay: 100ms; }
+  .stagger-2 { animation-delay: 200ms; }
+  .stagger-3 { animation-delay: 300ms; }
+  .stagger-4 { animation-delay: 400ms; }
+  .stagger-5 { animation-delay: 500ms; }
+  .stagger-6 { animation-delay: 600ms; }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
